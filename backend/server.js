@@ -437,6 +437,6 @@ app.delete("/api/exercicios/:id", autenticar, async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`💪 Backend rodando em http://localhost:${PORT}`);
-    console.log(`📋 API: http://localhost:${PORT}/api`);
+    console.log(`Backend rodando em http://localhost:${PORT}`);
+    console.log(`API: http://localhost:${PORT}/api`);
 });
