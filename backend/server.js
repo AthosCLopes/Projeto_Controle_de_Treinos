@@ -1,8 +1,3 @@
-// =============================================
-// Sistema de Controle de Treinos - Backend
-// Node.js + Express + MySQL
-// =============================================
-
 const express = require("express");
 const mysql = require("mysql2/promise");
 const cors = require("cors");
@@ -28,8 +23,9 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-// Serve arquivos estáticos (script.js, style.css)
+// Serve arquivos estáticos 
 app.use(express.static(path.join(__dirname, "../public")));
+
 // Serve as páginas HTML (login, splits, dias, exercicios)
 app.use(express.static(path.join(__dirname, "../frontend")));
 
@@ -40,6 +36,7 @@ app.get("/", (req, res) => {
 // =============================================
 // MIDDLEWARE DE AUTENTICAÇÃO
 // =============================================
+
 function autenticar(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1]; // "Bearer <token>"
@@ -88,7 +85,7 @@ app.post("/api/cadastro", async (req, res) => {
         );
 
         res.status(201).json({
-            message: "Conta criada com sucesso!",
+            message: "Conta criada com sucesso",
             id: result.insertId,
         });
     } catch (error) {
@@ -127,7 +124,7 @@ app.post("/api/login", async (req, res) => {
         });
 
         res.json({
-            message: "Login realizado com sucesso!",
+            message: "Login realizado com sucesso",
             token,
             usuario: { id: usuario.id, nome: usuario.nome, email: usuario.email },
         });
@@ -168,7 +165,7 @@ app.post("/api/splits", autenticar, async (req, res) => {
         );
 
         res.status(201).json({
-            message: "Split criado com sucesso!",
+            message: "Split criado com sucesso",
             id: result.insertId,
         });
     } catch (error) {
@@ -191,7 +188,7 @@ app.put("/api/splits/:id", autenticar, async (req, res) => {
             return res.status(404).json({ error: "Split não encontrado" });
         }
 
-        res.json({ message: "Split atualizado com sucesso!" });
+        res.json({ message: "Split atualizado com sucesso" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -211,7 +208,7 @@ app.delete("/api/splits/:id", autenticar, async (req, res) => {
             return res.status(404).json({ error: "Split não encontrado" });
         }
 
-        res.json({ message: "Split excluído com sucesso!" });
+        res.json({ message: "Split excluído com sucesso" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -269,7 +266,7 @@ app.post("/api/splits/:splitId/dias", autenticar, async (req, res) => {
         );
 
         res.status(201).json({
-            message: "Dia de treino criado com sucesso!",
+            message: "Dia de treino criado com sucesso",
             id: result.insertId,
         });
     } catch (error) {
@@ -295,7 +292,7 @@ app.put("/api/dias/:id", autenticar, async (req, res) => {
             return res.status(404).json({ error: "Dia de treino não encontrado" });
         }
 
-        res.json({ message: "Dia de treino atualizado com sucesso!" });
+        res.json({ message: "Dia de treino atualizado com sucesso" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -317,7 +314,7 @@ app.delete("/api/dias/:id", autenticar, async (req, res) => {
             return res.status(404).json({ error: "Dia de treino não encontrado" });
         }
 
-        res.json({ message: "Dia de treino excluído com sucesso!" });
+        res.json({ message: "Dia de treino excluído com sucesso" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -386,7 +383,7 @@ app.post("/api/dias/:diaId/exercicios", autenticar, async (req, res) => {
         );
 
         res.status(201).json({
-            message: "Exercício criado com sucesso!",
+            message: "Exercício criado com sucesso",
             id: result.insertId,
         });
     } catch (error) {
@@ -413,7 +410,7 @@ app.put("/api/exercicios/:id", autenticar, async (req, res) => {
             return res.status(404).json({ error: "Exercício não encontrado" });
         }
 
-        res.json({ message: "Exercício atualizado com sucesso!" });
+        res.json({ message: "Exercício atualizado com sucesso" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -436,13 +433,13 @@ app.delete("/api/exercicios/:id", autenticar, async (req, res) => {
             return res.status(404).json({ error: "Exercício não encontrado" });
         }
 
-        res.json({ message: "Exercício excluído com sucesso!" });
+        res.json({ message: "Exercício excluído com sucesso" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
 app.listen(PORT, () => {
-    console.log(`Backend rodando em http://localhost:${PORT}`);
+    console.log(`Backend: http://localhost:${PORT}`);
     console.log(`API: http://localhost:${PORT}/api`);
 });
