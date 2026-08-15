@@ -26,7 +26,7 @@ function logout() {
     window.location.href = "login.html";
 }
 
-// Chama no topo de páginas protegidas. Redireciona se não houver sessão.
+// Chama no topo de páginas que precisam de autenticação 
 function exigirAutenticacao() {
     if (!obterToken()) {
         window.location.href = "login.html";
@@ -35,7 +35,7 @@ function exigirAutenticacao() {
     return true;
 }
 
-// Wrapper de fetch que injeta o token e trata erros padronizados
+// Função auxiliar de fetch que usa o token
 async function apiFetch(endpoint, options = {}) {
     const headers = {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ async function apiFetch(endpoint, options = {}) {
 }
 
 // =============================================================
-// HELPERS DE UI
+// AUXILIARES DE UI
 // =============================================================
 
 function escapeHtml(texto) {
