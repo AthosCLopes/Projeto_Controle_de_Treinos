@@ -1,3 +1,8 @@
+// =============================================
+// Sistema de Controle de Treinos - Backend
+// Node.js + Express + MySQL
+// =============================================
+
 const express = require("express");
 const mysql = require("mysql2/promise");
 const cors = require("cors");
@@ -7,7 +12,7 @@ const path = require("path");
 
 const app = express();
 const PORT = 3000;
-const JWT_SECRET = "619022166986f774abab215ef4800a1be2afff746dd4db77105f32439c23b769";
+const JWT_SECRET = "troque_essa_chave_em_producao"; // idealmente vir de variável de ambiente
 
 app.use(cors());
 app.use(express.json());
@@ -23,8 +28,10 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-// Arquivos estáticos
+// Serve arquivos estáticos (script.js, style.css)
 app.use(express.static(path.join(__dirname, "../public")));
+// Serve as páginas HTML (login, splits, dias, exercicios)
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/login.html"));
@@ -33,13 +40,12 @@ app.get("/", (req, res) => {
 // =============================================
 // MIDDLEWARE DE AUTENTICAÇÃO
 // =============================================
-
 function autenticar(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1]; // "Bearer <token>"
 
     if (!token) {
-        return res.status(401).json({ error: "Não autorizado" });
+        return res.status(401).json({ error: "Token não informado" });
     }
 
     jwt.verify(token, JWT_SECRET, (err, payload) => {

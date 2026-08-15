@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrar - Controle de Treinos</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="login">
+    <div class="auth-wrap">
+        <div class="auth-card">
+            <h1 class="auth-title">Controle de Treinos</h1>
+            <p class="auth-subtitle">Organize seus splits, dias e exercícios</p>
+
+            <div class="auth-tabs">
+                <button type="button" id="tab-login" class="auth-tab active">Entrar</button>
+                <button type="button" id="tab-cadastro" class="auth-tab">Criar conta</button>
+            </div>
+
+            <!-- Formulário de login -->
+            <form id="form-login" class="auth-form active">
+                <div id="login-error" class="form-error"></div>
+
+                <div class="form-group">
+                    <label class="label" for="login-email">Email</label>
+                    <input class="input" type="email" id="login-email" required />
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="login-senha">Senha</label>
+                    <input class="input" type="password" id="login-senha" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+            </form>
+
+            <!-- Formulário de cadastro -->
+            <form id="form-cadastro" class="auth-form">
+                <div id="cadastro-error" class="form-error"></div>
+
+                <div class="form-group">
+                    <label class="label" for="cadastro-nome">Nome</label>
+                    <input class="input" type="text" id="cadastro-nome" required />
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="cadastro-email">Email</label>
+                    <input class="input" type="email" id="cadastro-email" required />
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="cadastro-senha">Senha</label>
+                    <input class="input" type="password" id="cadastro-senha" minlength="6" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Criar conta</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercícios - Controle de Treinos</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="exercicios">
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="brand">Controle de Treinos</div>
+            <div class="topbar-actions">
+                <span class="usuario-nome" id="usuario-nome"></span>
+                <button type="button" id="logout-btn" class="btn btn-outline btn-sm">Sair</button>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="breadcrumb">
+                <a href="splits.html">Splits</a> /
+                <a id="breadcrumb-split" href="#">Split</a>
+            </div>
+
+            <div class="page-header">
+                <div>
+                    <h1 id="dia-nome-titulo">Dia de treino</h1>
+                    <p>Exercícios e peso atual usado em cada um.</p>
+                </div>
+                <button type="button" id="novo-exercicio-btn" class="btn btn-primary">+ Novo exercício</button>
+            </div>
+
+            <div id="exercicios-container" class="exercise-list"></div>
+        </main>
+    </div>
+
+    <!-- Modal: criar exercício -->
+    <div id="exercicio-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Novo Exercício</h2>
+                <button type="button" id="exercicio-modal-close" class="modal-close">&times;</button>
+            </div>
+
+            <form id="exercicio-form">
+                <div id="exercicio-error" class="form-error"></div>
+
+                <div class="form-group">
+                    <label class="label" for="exercicio-nome">Nome</label>
+                    <input class="input" type="text" id="exercicio-nome" placeholder="Ex: Agachamento livre" required />
+                </div>
+
+                <div class="input-row">
+                    <div class="form-group">
+                        <label class="label" for="exercicio-series">Séries</label>
+                        <input class="input" type="number" min="1" id="exercicio-series" placeholder="4" />
+                    </div>
+                    <div class="form-group">
+                        <label class="label" for="exercicio-repeticoes">Repetições</label>
+                        <input class="input" type="number" min="1" id="exercicio-repeticoes" placeholder="10" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="exercicio-peso">Peso atual (kg)</label>
+                    <input class="input" type="number" min="0" step="0.5" id="exercicio-peso" placeholder="20" />
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="fecharModal('exercicio-modal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

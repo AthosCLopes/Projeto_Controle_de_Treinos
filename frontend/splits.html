@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meus Splits - Controle de Treinos</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="splits">
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="brand">Controle de Treinos</div>
+            <div class="topbar-actions">
+                <span class="usuario-nome" id="usuario-nome"></span>
+                <button type="button" id="logout-btn" class="btn btn-outline btn-sm">Sair</button>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="page-header">
+                <div>
+                    <h1>Meus Splits</h1>
+                    <p>Cada split agrupa os dias de treino da sua rotina.</p>
+                </div>
+                <button type="button" id="novo-split-btn" class="btn btn-primary">+ Novo split</button>
+            </div>
+
+            <div id="splits-container" class="card-grid"></div>
+        </main>
+    </div>
+
+    <!-- Modal: criar split -->
+    <div id="split-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Novo Split</h2>
+                <button type="button" id="split-modal-close" class="modal-close">&times;</button>
+            </div>
+
+            <form id="split-form">
+                <div id="split-error" class="form-error"></div>
+
+                <div class="form-group">
+                    <label class="label" for="split-nome">Nome</label>
+                    <input class="input" type="text" id="split-nome" placeholder="Ex: Push Pull Legs" required />
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="split-descricao">Descrição (opcional)</label>
+                    <textarea class="input" id="split-descricao" rows="3" placeholder="Ex: rotina de 6 dias focada em hipertrofia"></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="fecharModal('split-modal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

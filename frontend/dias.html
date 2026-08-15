@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dias de Treino - Controle de Treinos</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="dias">
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="brand">Controle de Treinos</div>
+            <div class="topbar-actions">
+                <span class="usuario-nome" id="usuario-nome"></span>
+                <button type="button" id="logout-btn" class="btn btn-outline btn-sm">Sair</button>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="breadcrumb"><a href="splits.html">Splits</a></div>
+
+            <div class="page-header">
+                <div>
+                    <h1 id="split-nome-titulo">Split</h1>
+                    <p>Dias de treino deste split.</p>
+                </div>
+                <button type="button" id="novo-dia-btn" class="btn btn-primary">+ Novo dia</button>
+            </div>
+
+            <div id="dias-container" class="card-grid"></div>
+        </main>
+    </div>
+
+    <!-- Modal: criar dia de treino -->
+    <div id="dia-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Novo Dia de Treino</h2>
+                <button type="button" id="dia-modal-close" class="modal-close">&times;</button>
+            </div>
+
+            <form id="dia-form">
+                <div id="dia-error" class="form-error"></div>
+
+                <div class="form-group">
+                    <label class="label" for="dia-nome">Nome</label>
+                    <input class="input" type="text" id="dia-nome" placeholder="Ex: Perna, Peito e Ombro" required />
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="fecharModal('dia-modal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
